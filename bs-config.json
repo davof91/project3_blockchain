@@ -1,0 +1,10 @@
+{
+  "server": {
+    "watchOptions":{}, 
+    "open": false,
+    "baseDir": ["./","./src", "./project-6/build/contracts"],
+    "routes": {
+      "/node_modules": "node_modules"
+    }
+  }
+}
