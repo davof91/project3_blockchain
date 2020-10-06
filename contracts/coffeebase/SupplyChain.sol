@@ -2,7 +2,6 @@ pragma solidity ^0.6.0;
 // pragma experimental ABIEncoderV2;
 
 import "../coffeeaccesscontrol/UserRoles.sol";
-import "./FileHash.sol";
 import "../../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
 // Define a contract 'Supplychain'

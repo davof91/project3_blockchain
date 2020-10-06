@@ -319,6 +319,7 @@ App = {
             const ipfs = window.IpfsHttpClient('ipfs.infura.io', '5001', { protocol: 'https' });
             console.log(App.fileArray)
             if(App.fileArray.length > 0){
+                $("#loader").css("display", "block");
                 ipfs.add(App.fileArray, async (err, result) => {
                     console.log(err, result);
     
@@ -341,6 +342,7 @@ App = {
                         App.itemHash,
                     );
                     App.fileArray = []
+                    $("#loader").css("display", "none");
     
                 })
             }
@@ -563,7 +565,7 @@ App = {
         const bOne = await supplyChain.fetchItemBufferOne.call(hashed);
         const bTwo = await supplyChain.fetchItemBufferTwo.call(hashed);
         if(bOne[2] == "0x0000000000000000000000000000000000000000"){
-            alert("No event item with those SKU and UPC");
+            alert("No item with those SKU and UPC");
         }
         else{
             var well = document.createElement("div");
@@ -585,13 +587,16 @@ App = {
                 well.appendChild(processButton);
                 well.appendChild(packPutton);
                 well.appendChild(forSaleButton);
-                well.appendChild(shipButton);
             }
     
             if(await supplyChain.checkDistributor(App.metamaskAccountID)){
                 well.appendChild(buyButton);
                 
             }
+            if(await supplyChain.checkFarmer(App.metamaskAccountID)){
+                well.appendChild(shipButton);
+            }
+    
     
             if(await supplyChain.checkRetailer(App.metamaskAccountID)){
                 well.appendChild(receiveButton);
